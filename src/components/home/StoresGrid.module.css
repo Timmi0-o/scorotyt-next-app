@@ -1,0 +1,42 @@
+.section {
+  margin-bottom: 1.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: rgb(17, 24, 39);
+  margin: 0;
+}
+
+.seeAllButton {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: rgb(107, 114, 128);
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.arrow {
+  margin-left: 0.25rem;
+  font-size: 1.125rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 8.5rem);
+  gap: 1rem;
+  padding: 0 1rem;
+} 

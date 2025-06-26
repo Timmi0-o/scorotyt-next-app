@@ -1,0 +1,86 @@
+.navigation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-top: 1px solid rgb(229, 231, 235);
+  padding: 0.5rem 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 50;
+  box-shadow: 0 -2px 8px 0 rgb(0 0 0 / 0.1);
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-radius: 0.5rem;
+  min-width: 3.5rem;
+}
+
+.navItem:hover {
+  background-color: rgb(249, 250, 251);
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-bottom: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.iconActive {
+  color: rgb(59, 130, 246);
+}
+
+.iconInactive {
+  color: rgb(156, 163, 175);
+}
+
+.label {
+  font-size: 0.625rem;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+}
+
+.labelActive {
+  color: rgb(59, 130, 246);
+}
+
+.labelInactive {
+  color: rgb(156, 163, 175);
+}
+
+/* Telegram-style blue accent */
+.navItemActive {
+  background-color: rgb(239, 246, 255);
+}
+
+.cartBadge {
+  position: relative;
+}
+
+.cartBadgeNumber {
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  background-color: rgb(239, 68, 68);
+  color: white;
+  font-size: 0.625rem;
+  font-weight: 600;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+} 

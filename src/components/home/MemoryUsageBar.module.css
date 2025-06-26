@@ -1,0 +1,18 @@
+.container {
+  background-color: rgb(31, 41, 55);
+  color: white;
+}
+
+.content {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+}
+
+.prefix {
+  opacity: 0.6;
+  margin-right: 0.5rem;
+}
+
+.text {
+  font-weight: 500;
+} 

@@ -1,0 +1,185 @@
+.container {
+  min-height: 100vh;
+  padding-bottom: 5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.addressSection {
+  flex: 1;
+}
+
+.address {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgb(17, 24, 39);
+  display: flex;
+  align-items: center;
+}
+
+.dropdown {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  color: rgb(107, 114, 128);
+}
+
+.deliveryTime {
+  font-size: 0.875rem;
+  color: rgb(107, 114, 128);
+  margin-top: 0.25rem;
+}
+
+.avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: rgb(250, 204, 21);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.tabsContainer {
+  padding: 0 1rem;
+  border-bottom: 1px solid rgb(243, 244, 246);
+}
+
+.tabsWrapper {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tabsWrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  padding: 1rem 0;
+  font-size: 1rem;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tabActive {
+  color: rgb(17, 24, 39);
+  font-weight: 600;
+}
+
+.tabInactive {
+  color: rgb(156, 163, 175);
+  font-weight: 400;
+}
+
+.content {
+  padding: 0 1rem;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.sectionTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: rgb(17, 24, 39);
+  margin: 0;
+}
+
+.seeAllButton {
+  background: none;
+  border: none;
+  color: rgb(107, 114, 128);
+  font-size: 0.875rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.arrow {
+  font-size: 1rem;
+}
+
+.deliveryBanner {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  background-color: white;
+  margin: 1rem -1rem 0 -1rem;
+}
+
+.deliveryLink {
+  background: none;
+  border: none;
+  color: rgb(34, 197, 94);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.15s ease;
+}
+
+.deliveryLink:hover {
+  background-color: rgb(240, 253, 244);
+}
+
+.bottomButton {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  border-top: 1px solid rgb(243, 244, 246);
+  z-index: 20;
+}
+
+.actionButton {
+  width: 100%;
+  background-color: rgb(34, 197, 94);
+  color: white;
+  font-weight: 500;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actionButton:hover {
+  background-color: rgb(22, 163, 74);
+}
+
+.time {
+  font-size: 0.875rem;
+}
+
+.text {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.price {
+  font-size: 1rem;
+  font-weight: 600;
+} 
