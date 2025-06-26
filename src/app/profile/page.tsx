@@ -1,18 +1,16 @@
 'use client'
 
-import { useTelegramInitData } from '@/hooks/useTelegramInitData'
-
-const profileMenuItems = [
-	{ id: 1, title: 'Мои заказы', icon: '📦', href: '/profile/orders' },
-	{ id: 2, title: 'Адреса доставки', icon: '📍', href: '/profile/addresses' },
-	{ id: 3, title: 'Способы оплаты', icon: '💳', href: '/profile/payments' },
-	{ id: 4, title: 'Уведомления', icon: '🔔', href: '/profile/notifications' },
-	{ id: 5, title: 'Поддержка', icon: '💬', href: '/profile/support' },
-	{ id: 6, title: 'О приложении', icon: 'ℹ️', href: '/profile/about' },
-]
+// const profileMenuItems = [
+// 	{ id: 1, title: 'Мои заказы', icon: '📦', href: '/profile/orders' },
+// 	{ id: 2, title: 'Адреса доставки', icon: '📍', href: '/profile/addresses' },
+// 	{ id: 3, title: 'Способы оплаты', icon: '💳', href: '/profile/payments' },
+// 	{ id: 4, title: 'Уведомления', icon: '🔔', href: '/profile/notifications' },
+// 	{ id: 5, title: 'Поддержка', icon: '💬', href: '/profile/support' },
+// 	{ id: 6, title: 'О приложении', icon: 'ℹ️', href: '/profile/about' },
+// ]
 
 export default function ProfilePage() {
-	const { initData, isReady } = useTelegramInitData()
+	// const { initData, isReady } = useTelegramInitData()
 
 	return (
 		<div style={{ padding: '2rem 1rem 5rem', minHeight: '100vh' }}>

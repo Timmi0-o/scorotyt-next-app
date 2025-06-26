@@ -1,38 +1,36 @@
 'use client'
 
-import { useState } from 'react'
-
-const mockCartItems = [
-	{
-		id: 1,
-		name: 'Пицца Маргарита',
-		price: 450,
-		quantity: 1,
-		vendor: 'Додо Пицца',
-	},
-	{ id: 2, name: 'Кола 0.5л', price: 120, quantity: 2, vendor: 'Додо Пицца' },
-	{ id: 3, name: 'Хлеб белый', price: 45, quantity: 1, vendor: 'Пятерочка' },
-]
+// const mockCartItems = [
+// 	{
+// 		id: 1,
+// 		name: 'Пицца Маргарита',
+// 		price: 450,
+// 		quantity: 1,
+// 		vendor: 'Додо Пицца',
+// 	},
+// 	{ id: 2, name: 'Кола 0.5л', price: 120, quantity: 2, vendor: 'Додо Пицца' },
+// 	{ id: 3, name: 'Хлеб белый', price: 45, quantity: 1, vendor: 'Пятерочка' },
+// ]
 
 export default function CartPage() {
-	const [cartItems, setCartItems] = useState(mockCartItems)
+	// const [cartItems, setCartItems] = useState(mockCartItems)
 
-	const updateQuantity = (id: number, newQuantity: number) => {
-		if (newQuantity <= 0) {
-			setCartItems((items) => items.filter((item) => item.id !== id))
-		} else {
-			setCartItems((items) =>
-				items.map((item) =>
-					item.id === id ? { ...item, quantity: newQuantity } : item
-				)
-			)
-		}
-	}
+	// const updateQuantity = (id: number, newQuantity: number) => {
+	// 	if (newQuantity <= 0) {
+	// 		setCartItems((items) => items.filter((item) => item.id !== id))
+	// 	} else {
+	// 		setCartItems((items) =>
+	// 			items.map((item) =>
+	// 				item.id === id ? { ...item, quantity: newQuantity } : item
+	// 			)
+	// 		)
+	// 	}
+	// }
 
-	const totalAmount = cartItems.reduce(
-		(sum, item) => sum + item.price * item.quantity,
-		0
-	)
+	// const totalAmount = cartItems.reduce(
+	// 	(sum, item) => sum + item.price * item.quantity,
+	// 	0
+	// )
 
 	return (
 		<div style={{ padding: '2rem 1rem 5rem', minHeight: '100vh' }}>

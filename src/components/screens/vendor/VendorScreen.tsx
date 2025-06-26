@@ -4,10 +4,6 @@ import { ProductItem } from '@/components/entity/products/ProductItem/ProductIte
 import { useRouter } from 'next/navigation'
 import styles from './VendorScreen.module.css'
 
-interface VendorScreenProps {
-	vendorId: string
-}
-
 const restaurantData = {
 	name: 'Пиццерия Неаполь',
 	deliveryTime: '~15 мин',
@@ -78,7 +74,7 @@ const restaurantData = {
 	],
 }
 
-export default function VendorScreen({ vendorId }: VendorScreenProps) {
+export default function VendorScreen() {
 	const router = useRouter()
 
 	const handleBack = () => {
@@ -128,7 +124,7 @@ export default function VendorScreen({ vendorId }: VendorScreenProps) {
 			{/* Категории */}
 			<div className={styles.categoriesContainer}>
 				<div className={styles.categories}>
-					{restaurantData.categories.map((category, index) => (
+					{restaurantData.categories.map((category) => (
 						<button
 							key={category}
 							className={`${styles.categoryButton} ${
