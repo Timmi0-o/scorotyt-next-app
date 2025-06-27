@@ -23,7 +23,6 @@ export const cartGet = async (): Promise<IApiResponse<ICart>> => {
 		params: {
 			method: METHODS.GET,
 			next: {
-				revalidate: TAGS.CART.revalidate,
 				tags: [...TAGS.CART.tags],
 			},
 		},

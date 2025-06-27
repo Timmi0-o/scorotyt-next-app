@@ -1,4 +1,4 @@
-import { ActionOptions } from '@/types/action-options'
+import { ActionOptions, IActionOptions } from '@/types/action-options'
 import { IApiResponse, IProduct } from '@/types/api.types'
 import { METHODS, TAGS } from './data/constants.data'
 import { ENDPOINTS } from './data/endpoint.data'
@@ -13,7 +13,6 @@ export const productsGet = async (params?: {
 		params: {
 			method: METHODS.GET,
 			next: {
-				revalidate: TAGS.PRODUCTS.revalidate,
 				tags: [...TAGS.PRODUCTS.tags],
 			},
 		},
@@ -36,7 +35,6 @@ export const productsSearch = async (params: {
 		params: {
 			method: METHODS.GET,
 			next: {
-				revalidate: TAGS.PRODUCTS.revalidate,
 				tags: [...TAGS.PRODUCTS.tags],
 			},
 		},
@@ -50,16 +48,17 @@ export const productsSearch = async (params: {
 	return abstractGetAction(defaultOptions)
 }
 
-export const productGet = async (
-	id: number | string
-): Promise<IApiResponse<IProduct>> => {
-	const defaultOptions: ActionOptions = {
-		url: ENDPOINTS.products.one(id),
+export const productGetOne = async ({
+	...options
+}: { id: number | string } & Partial<ActionOptions>): Promise<
+	IApiResponse<IProduct>
+> => {
+	const defaultOptions: IActionOptions = {
+		url: ENDPOINTS.products.one(options.id),
 		params: {
-			method: METHODS.GET,
+			method: METHODS.POST,
 			next: {
-				revalidate: TAGS.PRODUCTS.revalidate,
-				tags: [...TAGS.PRODUCTS.tags, `product-${id}`],
+				tags: [...TAGS.PRODUCTS.tags, `product-${options.id}`],
 			},
 		},
 	}

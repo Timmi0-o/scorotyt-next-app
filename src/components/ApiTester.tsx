@@ -37,7 +37,7 @@ export const ApiTester = () => {
 		setIsLoading(true)
 		try {
 			// Тестируем с первым продавцом
-			const products = (await sellerProductsGet(1))?.data
+			const products = (await sellerProductsGet({ sellerId: 1 }))?.data
 			setResult({ type: 'products', data: products })
 			toast.success(`Загружено ${products.length} категорий товаров`)
 		} catch (error) {

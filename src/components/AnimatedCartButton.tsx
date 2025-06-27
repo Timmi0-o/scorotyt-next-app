@@ -41,7 +41,7 @@ export function AnimatedCartButton({
 		addItem({
 			id: product.id,
 			name: product.name,
-			price: product.price || 0,
+			price: product.variants[0].price,
 			imageUrl: product.image_url,
 			sellerId: product.seller_id || 0,
 		})
@@ -58,7 +58,7 @@ export function AnimatedCartButton({
 		addItem({
 			id: product.id,
 			name: product.name,
-			price: product.price || 0,
+			price: product.variants[0].price,
 			imageUrl: product.image_url,
 			sellerId: product.seller_id || 0,
 		})

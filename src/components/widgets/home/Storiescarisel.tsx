@@ -32,7 +32,7 @@ export const StoriesCarousel = ({ sliders }: { sliders: ISlider[] }) => {
 							<div className='absolute bottom-20 left-2.5'>
 								<button
 									className='bg-white/90 backdrop-blur-sm text-gray-800 hover:bg-white rounded-2xl px-4 py-2 font-medium shadow-lg transition-all hover:shadow-xl'
-									onClick={() => window.open(slider.slider_url, '_blank')}
+									onClick={() => window.open(slider.slider_url || '', '_blank')}
 								>
 									Подробнее
 									<span className='ml-2'>→</span>

@@ -1,16 +1,12 @@
-type ErrorResponse = {
-	message: string
-	code: string
-}
-
 type SuccessResponse<T> = {
-	success: true
+	status: number
+	message: string
+	total?: number
 	data: T
+	success?: boolean
 }
 
-type ApiResponse<T> =
-	| SuccessResponse<T>
-	| { error: ErrorResponse; success: false; path: string; timestamp: Date }
+type ApiResponse<T> = SuccessResponse<T>
 
 type HandlerResult<T> = {
 	data: T | null
@@ -28,25 +24,23 @@ export async function withErrorHandler<T>(
 	try {
 		const res = await fn()
 
-		if (!res.success) {
+		if (res.message !== 'success') {
 			return {
-				success: res.success,
+				success: false,
 				error: {
-					message: `${res.error.message} (${res.error.code}, ${
-						res.path || 'unknown'
-					})`,
+					message: `Ошибка API: ${res.message}`,
 				},
-				timestamp: res.timestamp,
-				path: res.path,
+				timestamp: new Date(),
 				data: null,
 			}
 		}
 
 		return {
 			data: res.data,
-			success: res.success,
+			success: true,
 		}
-	} catch {
+	} catch (error) {
+		console.log('error', error)
 		return {
 			data: null,
 			error: {

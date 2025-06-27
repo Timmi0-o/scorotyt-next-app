@@ -1,70 +1,38 @@
 'use client'
 
+import { IProduct } from '@/actions'
 import { ProductItem } from '@/components/entity/products/ProductItem/ProductItem'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import styles from './ProductDetailScreen.module.css'
 
 interface ProductDetailScreenProps {
-	productId: string
+	product: IProduct
 }
 
-export function ProductDetailScreen({ productId }: ProductDetailScreenProps) {
+export function ProductDetailScreen({ product }: ProductDetailScreenProps) {
 	const router = useRouter()
 
-	const productData = {
-		id: productId,
-		name: 'Суперсалат',
-		weight: '200 г',
-		description:
-			'Описание продукта, его потребительских свойств, способа приготовления или другие подробности о товаре или особенности блюда',
-		manufacturer: 'ООО Компания',
-		price: 170,
-		originalPrice: 200,
-		image: '/image 76.png',
-	}
-
-	const recommendations = [
-		{
-			id: '1',
-			name: 'Название',
-			weight: '100 г',
-			price: 100,
-			isPromo: true,
-			image: '/images/cake.jpg',
-		},
-		{
-			id: '2',
-			name: 'Название',
-			weight: '100 г',
-			price: 100,
-			isPromo: true,
-			image: '/images/cake.jpg',
-		},
-		{
-			id: '3',
-			name: 'Название',
-			weight: '100 г',
-			price: 100,
-			isPromo: true,
-			image: '/images/cake.jpg',
-		},
-	]
+	console.log('product', product)
 
 	return (
 		<div className={styles.productCard}>
-			{/* Кнопка закрыть */}
 			<button className={styles.closeButton} onClick={() => router.back()}>
 				×
 			</button>
 
-			{/* Изображение товара */}
 			<div className={styles.productImageContainer}>
-				<img
-					src={productData.image}
-					alt={productData.name}
-					className={styles.productImage}
-				/>
-				{/* Индикаторы слайдов */}
+				{product?.image_url ? (
+					<Image
+						src={product.image_url}
+						alt={product.name}
+						className={styles.productImage}
+						width={100}
+						height={100}
+					/>
+				) : (
+					<div className={styles.productImage}></div>
+				)}
 				<div className={styles.slideIndicators}>
 					<div className={styles.indicator}></div>
 					<div className={styles.indicator}></div>
@@ -75,15 +43,20 @@ export function ProductDetailScreen({ productId }: ProductDetailScreenProps) {
 
 			{/* Информация о товаре */}
 			<div className={styles.productInfo}>
-				<h1 className={styles.productName}>{productData.name}</h1>
-				<p className={styles.productWeight}>{productData.weight}</p>
+				<h1 className={styles.productName}>{product?.name}</h1>
+				{product?.variants[0].measurement ? (
+					<p className={styles.productWeight}>
+						{product?.variants[0].measurement}{' '}
+						{product?.variants[0]?.unit?.unit_short_code}
+					</p>
+				) : null}
 
-				<p className={styles.productDescription}>{productData.description}</p>
+				<p className={styles.productDescription}>{product.description}</p>
 
 				<div className={styles.manufacturerInfo}>
 					<span className={styles.manufacturerLabel}>Производитель</span>
 					<span className={styles.manufacturerName}>
-						{productData.manufacturer}
+						{product.manufacturer}
 					</span>
 				</div>
 			</div>
@@ -93,8 +66,8 @@ export function ProductDetailScreen({ productId }: ProductDetailScreenProps) {
 				<h2 className={styles.recommendationsTitle}>Рекомендуем</h2>
 
 				<div className={styles.recommendationsList}>
-					{recommendations.map((item) => (
-						<ProductItem key={item.id} />
+					{product.variants.map((item) => (
+						<ProductItem key={item.id} product={product} />
 					))}
 				</div>
 
@@ -109,9 +82,11 @@ export function ProductDetailScreen({ productId }: ProductDetailScreenProps) {
 			<div className={styles.addToCartSection}>
 				<button className={styles.addToCartButton}>
 					<span className={styles.originalPrice}>
-						{productData.originalPrice} ₽
+						{product.variants[0].price} ₽
 					</span>
-					<span className={styles.currentPrice}>{productData.price} ₽</span>
+					<span className={styles.currentPrice}>
+						{product.variants[0].discounted_price} ₽
+					</span>
 					<span className={styles.addButton}>+</span>
 				</button>
 			</div>

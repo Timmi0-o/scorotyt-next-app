@@ -1,5 +1,5 @@
 import { ActionOptions } from '@/types/action-options'
-import { IApiResponse, ICategory, ISeller } from '@/types/api.types'
+import { IApiResponse, IProduct, ISeller } from '@/types/api.types'
 import { METHODS, TAGS } from './data/constants.data'
 import { ENDPOINTS } from './data/endpoint.data'
 import { abstractGetAction } from './helpers/abstract-action.action'
@@ -15,12 +15,11 @@ export const sellersGet = async (params?: {
 		params: {
 			method: METHODS.GET,
 			next: {
-				revalidate: TAGS.SELLERS.revalidate,
 				tags: [...TAGS.SELLERS.tags],
 			},
 		},
 		filters: {
-			limit: params?.limit || 100,
+			limit: params?.limit,
 			latitude: params?.latitude,
 			longitude: params?.longitude,
 			seller_id: params?.seller_id,
@@ -30,16 +29,35 @@ export const sellersGet = async (params?: {
 	return abstractGetAction(defaultOptions)
 }
 
-export const sellerProductsGet = async (
-	sellerId: number
-): Promise<IApiResponse<ICategory[]>> => {
+export const sellerProductsGet = async ({
+	...options
+}: { sellerId: number } & Partial<ActionOptions>): Promise<
+	IApiResponse<IProduct[]>
+> => {
 	const defaultOptions: ActionOptions = {
-		url: ENDPOINTS.sellers.products(sellerId),
+		url: ENDPOINTS.sellers.products(options.sellerId),
 		params: {
 			method: METHODS.GET,
 			next: {
-				revalidate: TAGS.PRODUCTS.revalidate,
-				tags: [...TAGS.PRODUCTS.tags, `seller-${sellerId}`],
+				tags: [...TAGS.PRODUCTS.tags, `seller-${options.sellerId}`],
+			},
+		},
+	}
+
+	return abstractGetAction(defaultOptions)
+}
+
+export const sellerProductsByCategoryGet = async ({
+	...options
+}: { categoryId: number } & Partial<ActionOptions>): Promise<
+	IApiResponse<IProduct[]>
+> => {
+	const defaultOptions: ActionOptions = {
+		url: ENDPOINTS.sellers.productsByCategory(options.categoryId),
+		params: {
+			method: METHODS.GET,
+			next: {
+				tags: [...TAGS.PRODUCTS.tags, `category-${options.categoryId}`],
 			},
 		},
 	}

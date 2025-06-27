@@ -1,4 +1,9 @@
-export const api = async (url: string, params: RequestInit, json = true) => {
+export const api = async (
+	url: string,
+	params: RequestInit,
+	// ssr = true,
+	json = true
+) => {
 	// let session
 	// if (ssr) {
 	// 	session = await getServerSession(authOptions)
@@ -11,19 +16,17 @@ export const api = async (url: string, params: RequestInit, json = true) => {
 		opts = {
 			...params,
 			headers: {
+				...params.headers,
 				'Content-Type': 'application/json',
 				// Authorization: 'Bearer ' + session?.accessToken,
-				// 'Session-Id': session?.sessionId ?? '',
-				...params.headers,
 			},
 		}
 	} else {
 		opts = {
 			...params,
 			headers: {
-				// Authorization: 'Bearer ' + session?.accessToken,
-				// 'Session-Id': session?.sessionId ?? '',
 				...params.headers,
+				// Authorization: 'Bearer ' + session?.accessToken,
 			},
 		}
 	}

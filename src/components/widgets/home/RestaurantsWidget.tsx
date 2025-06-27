@@ -91,7 +91,7 @@ export const RestaurantWidget = ({ sellers }: { sellers: ISeller[] }) => {
 						<div className='h-[220px]'>
 							<div className='flex overflow-x-auto scrollbar-hide'>
 								{seller.products.slice(0, 5).map((product) => (
-									<ProductItem key={product.id} />
+									<ProductItem product={product} key={product.id} />
 								))}
 								{seller.products?.length > 5 && (
 									<div

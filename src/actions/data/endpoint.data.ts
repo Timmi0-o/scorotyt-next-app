@@ -9,11 +9,13 @@ export const ENDPOINTS = {
 		get: `${apiBase}/customer/sellers`,
 		products: (sellerId: string | number) =>
 			`${apiBase}/customer/products/sellers/${sellerId}`,
+		productsByCategory: (categoryId: string | number) =>
+			`${apiBase}/customer/products/sellers/${categoryId}`,
 	},
 	products: {
 		get: `${apiBase}/products`,
 		search: `${apiBase}/products/search`,
-		one: (id: string | number) => `${apiBase}/products/${id}`,
+		one: (id: string | number) => `${apiBase}/customer/product_by_id?id=${id}`,
 	},
 	cart: {
 		get: `${apiBase}/cart`,

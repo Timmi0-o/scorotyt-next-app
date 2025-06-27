@@ -1,4 +1,6 @@
-import { ProductDetailScreen } from '@/components/screens/product/ProductDetailScreen'
+import { productGetOne } from '@/actions'
+import { ProductDetailScreen } from '@/components/pages/product/ProductDetailScreen'
+import { withErrorHandler } from '@/utils/withErrorHandler'
 
 interface ProductPageProps {
 	params: Promise<{ id: string }>
@@ -6,5 +8,8 @@ interface ProductPageProps {
 
 export default async function ProductPage({ params }: ProductPageProps) {
 	const { id } = await params
-	return <ProductDetailScreen productId={id} />
+
+	const { data } = await withErrorHandler(() => productGetOne({ id }))
+
+	return <ProductDetailScreen product={data!} />
 }

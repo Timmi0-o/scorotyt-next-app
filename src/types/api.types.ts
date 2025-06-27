@@ -7,62 +7,114 @@ export interface IWorkingHoursDay {
 	break?: Record<string, unknown> // для перерывов
 }
 
+// Типы для единиц измерения
+export interface IUnit {
+	id: number
+	unit_short_code: string
+}
+
+// Типы для вариантов товаров
+export interface IVariant {
+	id: number
+	product_id: number
+	type: string
+	status: number
+	measurement: number
+	price: number
+	discounted_price: number
+	stock: number
+	stock_unit_id: number
+	unit: IUnit
+}
+
 // Типы данных API
 export interface ISeller {
 	id: number
 	name: string
 	store_name: string
+	logo: string
 	status: number // 1-открыт, 0-неактивен, 4-скоро откроется
-	latitude: string
-	longitude: string
-	logo: string // путь к логотипу
-	type: string // 'restaurant' | 'shop'
-	store_description: string | null
-	working_hours: string | null // JSON строка с IWorkingHoursDay[]
 	time_delivery: string | null
 	time_cooking: string | null
-	formatted_address: string
+	type: string // 'restaurant' | 'shop'
 	accepting_orders: number // 0 или 1
 	max_delivery_distance: string
+	latitude: string
+	longitude: string
 	row_order: number
+	working_hours: string | null // JSON строка с IWorkingHoursDay[]
 	logo_url: string
+	national_identity_card_url: string | null
+	address_proof_url: string | null
 	categories_array: string // строка с ID категорий через запятую
 	products: IProduct[]
+	categories: ISellerCategory[]
+}
+
+export interface ISellerCategory {
+	id: number
+	image_url: string
+	has_child: boolean
+	has_active_child: boolean
+	pivot: {
+		seller_id: number
+		category_id: number
+		commission: number
+	}
+	cat_active_childs: unknown[]
 }
 
 export interface IProduct {
 	id: number
+	seller_id: number
+	row_order: number
 	name: string
+	tags: string
+	tax_id: number
+	brand_id: number
 	slug: string
-	subtitle?: string
+	category_id: number
+	indicator: number | null
+	manufacturer: string
+	made_in: string
+	return_status: number
+	cancelable_status: number
+	till_status: string
 	image: string
-	image_url?: string
+	other_images: string | null
+	description: string
+	status: number
+	is_approved: number
+	return_days: number
 	type: string
-	price?: number
-	discounted_price?: number
-	description?: string
-	seller_id?: number
-	variants?: Array<{
-		id: number
-		price: number
-		discounted_price: number
-		stock: number
-		unit: {
-			unit_short_code: string
-		}
-	}>
+	is_unlimited_stock: number
+	cod_allowed: number
+	total_allowed_quantity: number
+	tax_included_in_price: number
+	fssai_lic_no: string
+	featured: number
+	proteins_per_100: number | null
+	fats_per_100: number | null
+	carbohydrates_per_100: number | null
+	kcal: number | null
+	composition: string | null
+	terms_and_conditions_of_storage: string | null
+	'1c_code': string | null
+	image_url: string
+	variants: IVariant[]
 }
 
 export interface ICategory {
 	id: number
 	name: string
 	slug: string
-	subtitle: string
+	status: number
 	image: string
-	image_url?: string
-	type: string
-	products_count: number
-	products?: IProduct[]
+	row_order: number
+	image_url: string
+	has_child: boolean
+	has_active_child: boolean
+	cat_active_childs: unknown[]
 }
 
 export interface IApiResponse<T> {
@@ -74,26 +126,18 @@ export interface IApiResponse<T> {
 }
 
 export interface ISlider {
-	id: string
+	id: number
 	type: string
 	type_id: string
-	slider_url: string
+	slider_url: string | null
 	type_name: string
 	image_url: string
 }
 
 export interface IHomeData {
-	sliders?: ISlider[]
-	offers?: unknown[]
-	sections?: unknown[]
-	is_category_section_in_homepage?: string
-	is_brand_section_in_homepage?: string
-	is_seller_section_in_homepage?: string
-	is_country_section_in_homepage?: string
-	categories?: unknown[]
-	brands?: unknown[]
-	sellers?: ISeller[]
-	countries?: unknown[]
+	categories: ICategory[]
+	sellers: ISeller[]
+	sliders: ISlider[]
 }
 
 // Трансформированные типы для приложения
@@ -107,7 +151,6 @@ export interface ITransformedSeller {
 	acceptingOrders: boolean
 	deliveryTime: string | null
 	cookingTime: string | null
-	address: string
 	description: string | null
 	workingHours: IWorkingHoursDay[] | null
 	maxDeliveryDistance: number

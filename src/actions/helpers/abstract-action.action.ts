@@ -12,8 +12,6 @@ export const abstractGetAction = async ({
 }: IActionOptions) => {
 	let finalUrl = url
 
-	console.log('1', 1)
-
 	if (filters) {
 		const formattedParams = customFormatter
 			? customFormatter(filters)
@@ -23,6 +21,8 @@ export const abstractGetAction = async ({
 			finalUrl += `?${new URLSearchParams(formattedParams)}`
 		}
 	}
+
+	params.cache = 'force-cache'
 
 	const res = await api(finalUrl, params)
 
@@ -49,6 +49,10 @@ function defaultQueryFormatter(
 	// Общие параметры пагинации и поиска
 	if (filters._limit) {
 		params._limit = String(filters._limit)
+	}
+
+	if (filters.city_id) {
+		params.city_id = String(filters.city_id)
 	}
 
 	if (filters._offset) {

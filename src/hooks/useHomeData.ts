@@ -1,45 +1,12 @@
 'use client'
 
-import { homeGet, IProduct, ISeller } from '@/actions'
+import { homeGet, ISeller } from '@/actions'
 import { useQuery } from '@tanstack/react-query'
-
-export interface Slider {
-	id: string
-	imageUrl: string
-	title: string
-	url: string
-}
-
-export interface Seller {
-	id: number
-	storeName: string
-	logoUrl?: string | null
-	type: 'restaurant' | 'shop'
-	status: number
-	acceptingOrders: boolean
-	deliveryTime?: string
-	categories: string[]
-	products: IProduct[]
-}
-
-export interface Product {
-	id: number
-	name: string
-	description: string
-	price: number
-	imageUrl?: string
-	sellerId: number
-}
-
-export interface HomeData {
-	sliders: Slider[]
-	sellers: Seller[]
-}
 
 export const useHomeData = () => {
 	return useQuery({
 		queryKey: ['homeData'],
-		queryFn: () => homeGet(),
+		queryFn: () => homeGet({ filters: { city_id: 1 } }),
 		staleTime: 5 * 60 * 1000, // 5 минут
 		gcTime: 10 * 60 * 1000, // 10 минут (заменил cacheTime на gcTime)
 		retry: 2,
@@ -79,6 +46,6 @@ export const useSliders = () => {
 
 	return {
 		...rest,
-		data: homeData?.data?.sliders || [],
+		data: homeData?.data?.sliders,
 	}
 }

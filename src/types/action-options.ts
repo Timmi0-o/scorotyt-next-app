@@ -12,9 +12,8 @@ export interface IActionOptions extends IBaseSearchFields {
 	}
 	body?: Record<string, unknown> | string
 	params?: {
-		method?: 'GET'
+		method?: 'GET' | 'POST'
 		next?: {
-			revalidate: number
 			tags: string[]
 		}
 		credentials?: 'include' | 'same-origin' | 'omit'
