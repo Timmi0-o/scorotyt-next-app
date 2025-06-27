@@ -1,4 +1,4 @@
-import { addToast } from '@heroui/react'
+import { toast } from 'sonner'
 import { withErrorHandler } from './withErrorHandler'
 
 type ApiResponse<T> =
@@ -22,7 +22,7 @@ export const requestManager = async <T = unknown>({
 	const { data, error } = await withErrorHandler(() => fn)
 
 	if (error?.message) {
-		addToast({ title: error.message, color: 'danger' })
+		toast.error(error.message)
 		return undefined
 	}
 
