@@ -19,11 +19,22 @@ export const abstractMutateAction = async ({
 }: MutateActionOptions) => {
 	const finalUrl = url
 
-	if (params?.body) {
-		params.body = JSON.stringify(params.body)
+	const fetchParams: RequestInit = {
+		method: params?.method || 'POST',
+		headers: params?.headers || {
+			'Content-Type': 'application/json',
+		},
 	}
 
-	const res = await api(finalUrl, params, isServerAction)
+	if (params?.body) {
+		if (typeof params.body === 'object') {
+			fetchParams.body = JSON.stringify(params.body)
+		} else {
+			fetchParams.body = params.body
+		}
+	}
+
+	const res = await api(finalUrl, fetchParams, isServerAction)
 
 	const errorResult = await ErrorObjectSetup(res)
 	if (errorResult?.error) {
