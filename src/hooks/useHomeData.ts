@@ -49,3 +49,13 @@ export const useSliders = () => {
 		data: homeData?.data?.sliders,
 	}
 }
+
+// Хук для получения категорий
+export const useCategories = () => {
+	const { data: homeData, ...rest } = useHomeData()
+
+	return {
+		...rest,
+		data: homeData?.data?.categories || [],
+	}
+}
